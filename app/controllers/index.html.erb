@@ -1,0 +1,18 @@
+<h1>メディア一覧</h1>
+
+<nav style="margin-bottom: 20px;">
+  <%= link_to "書籍一覧", books_path %>
+</nav>
+
+<ul>
+  <% @media.each do |medium| %>
+    <li>
+      <strong><%= medium.title %></strong> (<%= medium.category %>)
+      <%= link_to "詳細", medium %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @media.empty? %>
+  <p>登録されているメディアはありません。</p>
+<% end %>

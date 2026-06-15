@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Entries" %>
+
+<h1>Entries</h1>
+
+<p>
+  <%= link_to "New Entry", new_entry_path %>
+</p>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>カテゴリ</th>
+      <th>評価</th>
+      <th>感想</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= entry.title %></td>
+        <td><%= entry.tags %></td>
+        <td><%= "★" * (entry.rating || 0) %></td>
+        <td><%= truncate(entry.body, length: 50) %></td>
+        <td>
+        <%= link_to "詳細", entry_path(entry, scope: params[:scope]),
+    class: "btn btn-sm btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

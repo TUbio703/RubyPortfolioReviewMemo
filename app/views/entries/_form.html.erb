@@ -1,0 +1,72 @@
+<%= form_with(model: entry) do |form| %>
+
+  <% if entry.errors.any? %>
+    <div class="alert alert-danger">
+      <h5>
+        <%= pluralize(entry.errors.count, "error") %> エラーがあります
+      </h5>
+
+      <ul class="mb-0">
+        <% entry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- タイトル -->
+  <div class="mb-3">
+    <%= form.label :title, "タイトル", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <!-- タグ -->
+  <div class="mb-3">
+    <%= form.label :tag_names, "タグ", class: "form-label" %>
+
+    <%= form.text_field :tag_names,
+        value: form.object.tags.map(&:name).join(" "),
+        class: "form-control",
+        placeholder: "映画 青春 SF" %>
+
+    <div class="form-text">
+      スペース区切りで入力
+    </div>
+  </div>
+
+  <!-- 評価 -->
+  <div class="mb-3">
+    <label class="form-label">評価</label>
+
+    <div class="d-flex flex-wrap gap-2">
+
+      <div>
+        <%= form.radio_button :rating, nil %>
+        <%= form.label :rating_none, "なし" %>
+      </div>
+
+      <% (1..5).each do |n| %>
+        <div>
+          <%= form.radio_button :rating, n %>
+          <%= form.label "rating_#{n}", "★#{n}" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <!-- 感想 -->
+  <div class="mb-3">
+    <%= form.label :body, "感想", class: "form-label" %>
+
+    <%= form.text_area :body,
+        rows: 6,
+        class: "form-control" %>
+  </div>
+
+  <!-- 送信 -->
+  <div>
+    <%= form.submit "保存", class: "btn btn-success" %>
+  </div>
+
+<% end %>
