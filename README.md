@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+onfig\master.key
+ddccaba4fa889c6fb7ec1ac140b994da
