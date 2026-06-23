@@ -6,12 +6,10 @@ Rails.application.routes.draw do
 
   get "home/index"
     resources :entries do
-  resource :like, only: [:create, :destroy]
+  resource :like, only: [ :create, :destroy ]
 end
 
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "home#index"
-
-
 end
