@@ -45,12 +45,12 @@
         <%= form.label :rating_none, "なし" %>
       </div>
 
-      <% (1..5).each do |n| %>
-        <div>
-          <%= form.radio_button :rating, n %>
-          <%= form.label "rating_#{n}", "★#{n}" %>
-        </div>
-      <% end %>
+  <% (1..5).each do |n| %>
+  <div class="form-check form-check-inline">
+    <%= form.radio_button :rating, n, class: "form-check-input" %>
+    <%= form.label :rating, "★#{n}", value: n, class: "form-check-label" %>
+  </div>
+<% end %>
 
     </div>
   </div>

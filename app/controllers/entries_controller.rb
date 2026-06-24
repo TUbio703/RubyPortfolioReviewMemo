@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
   def edit
   end
 
-  def create
+ def create
     @entry = Entry.new(entry_params.except(:tag_names))
     @entry.user = current_user || User.find_by(email: "guest@example.com")
     @entry.tags = tags_from_names(entry_params[:tag_names])
@@ -23,7 +23,8 @@ class EntriesController < ApplicationController
     if @entry.save
       redirect_to root_path, notice: "作成しました"
     else
-      render :new
+      # ↓ status: :unprocessable_entity を追記
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +36,8 @@ class EntriesController < ApplicationController
     if @entry.save
       redirect_to root_path, notice: "更新しました"
     else
-      render :edit
+      # ↓ status: :unprocessable_entity を追記
+      render :edit, status: :unprocessable_entity
     end
   end
 
