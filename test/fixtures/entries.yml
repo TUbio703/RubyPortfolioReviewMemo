@@ -1,13 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   title: MyString
-  media_type: MyString
   rating: 1
   body: MyText
+  user: one
 
 two:
   title: MyString
-  media_type: MyString
   rating: 1
   body: MyText
+  user: two
